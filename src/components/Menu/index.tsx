@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState} from 'react'
 import './styles'
 import { Button, Container, Hr, Image, Item, Login, Logo, Wrapper } from './styles'
 import logo from '../../img/logo.png'
@@ -20,7 +21,12 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { Link } from "react-router-dom";
 
-export default function Menu() {
+interface MenuInterface {
+  darkMode:string;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function Menu({darkMode, setDarkMode}:MenuInterface) {
   return (
     <Container>
       <Wrapper>
@@ -91,6 +97,10 @@ export default function Menu() {
         <Item>
           <HelpOutlineOutlinedIcon />
           Help
+        </Item>
+        <Item onClick={() => setDarkMode(!darkMode)}>
+          <SettingsBrightnessOutlinedIcon />
+          {darkMode ? "Light" : "Dark"} Mode
         </Item>
       </Wrapper>
     </Container>
